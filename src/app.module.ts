@@ -5,7 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { CommonModule } from './common/common.module';
 import { ConfigModule } from '@nestjs/config';
 import { EnvConfiguration } from './config/app.config';
-import { ProductModule } from './pokemon/product.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [

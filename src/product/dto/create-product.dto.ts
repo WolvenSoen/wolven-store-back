@@ -15,4 +15,7 @@ export class CreateProductDto {
 
   @IsNumber()
   width: number;
+
+  @IsNumber()
+  price: number;
 }

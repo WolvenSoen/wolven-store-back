@@ -16,10 +16,15 @@ export class ProductService {
     // private readonly configService: ConfigService,
   ) {}
 
-  async create(createProductDto: CreateProductDto) {
-    createProductDto.name = createProductDto.name.toLowerCase().trim();
+  async create(createProductDto: CreateProductDto) {;
+    const now = new Date();
+    const productData = {
+      ...createProductDto,
+      created_at: now,
+      updated_at: now,
+    };
     try {
-      const product = await this.productModel.create(createProductDto);
+      const product = await this.productModel.create(productData);
       return product;
     } catch (error) {
       this.handleExceptions(error);
@@ -47,9 +52,8 @@ export class ProductService {
 
   async update(arg: string, updateProductDto: UpdateProductDto) {
     const product = await this.findOne(arg);
-    if (updateProductDto.name) {
-      updateProductDto.name = updateProductDto.name.toLowerCase().trim();
-    }
+    // Set updated_at to now
+    (updateProductDto as any).updated_at = new Date();
     try {
       await product.updateOne(updateProductDto, { new: true });
       return { ...product.toJSON(), ...updateProductDto };

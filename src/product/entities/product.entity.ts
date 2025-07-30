@@ -16,8 +16,12 @@ export class Product extends Document {
     @Prop({ required: true })
     length: number;
 
+
     @Prop({ required: true })
     width: number;
+
+    @Prop({ required: true })
+    price: number;
 
     @Prop({ default: () => new Date() })
     created_at: Date;

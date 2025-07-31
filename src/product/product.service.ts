@@ -55,8 +55,12 @@ export class ProductService {
     // Set updated_at to now
     (updateProductDto as any).updated_at = new Date();
     try {
-      await product.updateOne(updateProductDto, { new: true });
-      return { ...product.toJSON(), ...updateProductDto };
+      const updatedProduct = await this.productModel.findByIdAndUpdate(
+        product._id,
+        updateProductDto,
+        { new: true }
+      );
+      return updatedProduct;
     } catch (error) {
       this.handleExceptions(error);
     }

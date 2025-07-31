@@ -6,6 +6,7 @@ import { CommonModule } from './common/common.module';
 import { ConfigModule } from '@nestjs/config';
 import { EnvConfiguration } from './config/app.config';
 import { ProductModule } from './product/product.module';
+import { TokenModule } from './token/token.module';
 
 @Module({
   imports: [
@@ -23,6 +24,8 @@ import { ProductModule } from './product/product.module';
     MongooseModule.forRoot(process.env.MONGODB || ''),
 
     ProductModule,
+
+    TokenModule,
 
     CommonModule,
   ],

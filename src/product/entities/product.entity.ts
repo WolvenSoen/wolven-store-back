@@ -19,8 +19,12 @@ export class Product extends Document {
     @Prop({ required: true })
     width: number;
 
+
     @Prop({ required: true })
     price: number;
+
+    @Prop()
+    photoUrl: string;
 
     @Prop({ default: () => new Date() })
     created_at: Date;

@@ -2,10 +2,10 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 
+import { AuthGuard } from './common/guards/auth.guard';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
-  // app.setGlobalPrefix('api/v1');
 
   app.enableCors({
     origin: ['http://localhost:4200', 'https://wolven-store-front.vercel.app'], // or '*' for all origins, or an array of allowed origins
@@ -22,6 +22,9 @@ async function bootstrap() {
       },
     }),
   );
+
+  // Apply AuthGuard globally
+  app.useGlobalGuards(new AuthGuard());
 
   await app.listen(process.env.PORT ?? 3000);
 }

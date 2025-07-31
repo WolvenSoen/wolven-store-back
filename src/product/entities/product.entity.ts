@@ -16,7 +16,6 @@ export class Product extends Document {
     @Prop({ required: true })
     length: number;
 
-
     @Prop({ required: true })
     width: number;
 
